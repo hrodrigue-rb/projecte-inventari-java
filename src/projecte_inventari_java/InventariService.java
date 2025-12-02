@@ -64,4 +64,23 @@ public class InventariService {
         }
         return false;
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Canvia manualment la disponibilitat d'un material.
+     *
+     * @param id Identificador del material.
+     * @param novaDisponibilitat Estat de disponibilitat que es vol assignar.
+     * @return true si el material existeix i s'ha actualitzat correctament, false si no existeix.
+     */
+    public boolean canviarDisponibilitatMaterial(int id, boolean novaDisponibilitat) {
+        Material material = repositoriInventari.cercarMaterialPerID(id);
+        if (material != null) {
+            material.setDisponible(novaDisponibilitat);
+            return true;
+        }
+        return false;
+    }
+>>>>>>> feature/data-creation
 }
