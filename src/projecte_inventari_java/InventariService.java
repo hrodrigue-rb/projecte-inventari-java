@@ -25,9 +25,18 @@ public class InventariService {
      * @param categoria Categoria del material.
      * @param disponible Estat inicial de disponibilitat.
      */
-    public void afegirNouMaterial(int id, String nom, Categoria categoria, boolean disponible) {
-        repositoriInventari.afegirMaterial(new Material(id, nom, categoria, disponible));
+    public boolean afegirNouMaterial(int id, String nom, Categoria categoria, boolean disponible) {
+        if (repositoriInventari.cercarMaterialPerID(id) != null) {
+            System.err.println("Error: ja existeix un material amb l'ID " + id);
+            return false;
+        }
+
+        Material nouMaterial = new Material(id, nom, categoria, disponible);
+        repositoriInventari.afegirMaterial(nouMaterial);
+
+        return true;
     }
+
 
     /**
      * Retorna un material pel seu ID.

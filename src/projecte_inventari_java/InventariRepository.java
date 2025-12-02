@@ -12,6 +12,14 @@ public class InventariRepository {
     private List<Material> llistaDeMaterials = new ArrayList<>();
 
     /**
+     * Retorna el llistat de materials
+     *
+     */
+    public List<Material> getMaterials() {
+        return llistaDeMaterials;
+    }
+    
+    /**
      * Afegeix un material a l'inventari.
      *
      * @param material Material a afegir.

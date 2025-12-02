@@ -18,7 +18,7 @@ public class mainProject {
         serveiInventari.afegirNouMaterial(2, "Chromebook Lenovo", Categoria.INFORMÀTICA, true);
         serveiInventari.afegirNouMaterial(3, "Microscopi escolar", Categoria.LABORATORI, true);
 
-        Scanner scannerEntrada = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         int opcioMenu;
 
         do {
@@ -31,37 +31,38 @@ public class mainProject {
 
             System.out.println("99. Sortir");
             System.out.print("Opció: ");
-            opcioMenu = scannerEntrada.nextInt();
+            opcioMenu = scan.nextInt();
 
             switch (opcioMenu) {
                 case 1:
                     System.out.print("Introdueix l'ID del material: ");
-                    int idMaterial = scannerEntrada.nextInt();
+                    int idMaterial = scan.nextInt();
                     Material materialConsultat = serveiInventari.obtenirMaterialPerID(idMaterial);
                     System.out.println(materialConsultat != null ? materialConsultat : "No existeix aquest material.");
                     break;
 
                 case 2:
                     System.out.print("Introdueix l'ID del material: ");
-                    idMaterial = scannerEntrada.nextInt();
+                    idMaterial = scan.nextInt();
                     System.out.println(serveiInventari.estaDisponible(idMaterial) ? "Disponible" : "No disponible");
                     break;
 
                 case 3:
                     System.out.print("ID: ");
-                    idMaterial = scannerEntrada.nextInt();
-                    scannerEntrada.nextLine();
+                    idMaterial = scan.nextInt();
+                    scan.nextLine();
                     System.out.print("Nom: ");
-                    String nomMaterial = scannerEntrada.nextLine();
+                    String nomMaterial = scan.nextLine();
 
-                    System.out.println("Categoria (0-5):");
+                    System.out.println("Categoria (0-6):");
                     for (Categoria categoriaActual : Categoria.values()) {
                         System.out.println(categoriaActual.ordinal() + " - " + categoriaActual);
                     }
-                    Categoria categoriaMaterial = Categoria.values()[scannerEntrada.nextInt()];
+                    System.out.print("Categoria: ");
+                    Categoria categoriaMaterial = Categoria.values()[scan.nextInt()];
 
                     System.out.print("Disponible (true/false): ");
-                    boolean disponibleMaterial = scannerEntrada.nextBoolean();
+                    boolean disponibleMaterial = scan.nextBoolean();
 
                     serveiInventari.afegirNouMaterial(idMaterial, nomMaterial, categoriaMaterial, disponibleMaterial);
                     System.out.println("Material afegit correctament!");
@@ -69,7 +70,7 @@ public class mainProject {
 
                 case 4:
                     System.out.print("Introdueix l'ID del material a prestar: ");
-                    idMaterial = scannerEntrada.nextInt();
+                    idMaterial = scan.nextInt();
                     boolean materialPrestatCorrectament = serveiInventari.prestarMaterial(idMaterial);
                     System.out.println(materialPrestatCorrectament ? "Material prestat amb èxit!" 
                                                                     : "No es pot prestar: no existeix o ja no està disponible.");
@@ -78,9 +79,9 @@ public class mainProject {
 
                 case 5:
                     System.out.print("Introdueix l'ID del material: ");
-                    idMaterial = scannerEntrada.nextInt();
+                    idMaterial = scan.nextInt();
                     System.out.print("Nova disponibilitat (true/false): ");
-                    boolean novaDisponibilitat = scannerEntrada.nextBoolean();
+                    boolean novaDisponibilitat = scan.nextBoolean();
                     boolean canviCorrecte = serveiInventari.canviarDisponibilitatMaterial(idMaterial, novaDisponibilitat);
                     System.out.println(canviCorrecte ? "Disponibilitat actualitzada correctament." 
                                                       : "No s'ha pogut actualitzar: material no existeix.");
@@ -97,6 +98,6 @@ public class mainProject {
 
         } while (opcioMenu != 99);
 
-        scannerEntrada.close();
+        scan.close();
     }
 }
