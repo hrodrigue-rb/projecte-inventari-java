@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"projecte_inventari_java","c":"main","l":"main()","u":"%3Cinit%3E()"}];updateSearchResults();
