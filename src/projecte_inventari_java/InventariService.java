@@ -64,8 +64,6 @@ public class InventariService {
         }
         return false;
     }
-<<<<<<< HEAD
-=======
 
     /**
      * Canvia manualment la disponibilitat d'un material.
@@ -82,5 +80,4 @@ public class InventariService {
         }
         return false;
     }
->>>>>>> feature/data-creation
 }
